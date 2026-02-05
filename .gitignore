@@ -32,7 +32,7 @@ cookies
 *.flv
 *.gif
 *.jpeg
-*.jpg
+# *.jpg
 *.m4a
 *.m4v
 *.mhtml
