@@ -59,12 +59,7 @@ function initMap() {
         minZoom: 2
     });
 
-    // Dark Matter Base Layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-    }).addTo(map);
+    // Base Layer Removed for Wireframe Mode (Seamless Black)
 
     // Fetch World GeoJSON
     // Using a reliable lightweight GeoJSON source
@@ -73,24 +68,12 @@ function initMap() {
         .then(data => {
             L.geoJSON(data, {
                 style: function (feature) {
-                    // Check if country ID (e.g., "USA" or "US") is in our visited list
-                    // The GeoJSON uses 3-letter codes usually (feature.id)
-                    // We need to be careful. Let's check the data structure typically.
-                    // This specific GeoJSON uses 3 letter codes in feature.id.
-
-                    // Simple map for 2-letter to 3-letter if needed, or just simple check.
-                    // User list is 2-letter ("US", "GB"). GeoJSON is 3-letter ("USA", "GBR").
-                    // I will make the check robust or update `content.json` to 3-letter.
-                    // Actually, let's just make `content.json` 3-letter to be safe?
-                    // No, I'll update the JS to handle it later. For now, let's assume 3-letter in content.json for matching?
-                    // Or I can add a quick lookup object.
-
                     return {
-                        fillColor: '#333', // Default
+                        fillColor: 'transparent',
                         weight: 1,
-                        opacity: 1,
-                        color: '#444',
-                        fillOpacity: 0.7
+                        opacity: 0.2,
+                        color: '#ffffff', // White wireframe lines
+                        fillOpacity: 0
                     };
                 },
                 onEachFeature: onEachFeature
@@ -114,10 +97,11 @@ function onEachFeature(feature, layer) {
 
     if (visitedCountries.includes(countryId3)) {
         layer.setStyle({
-            fillColor: '#0070f3', // Highlight Color (Blue)
-            fillOpacity: 0.8,
-            color: '#00c4ff',
-            weight: 2
+            fillColor: '#2997ff', // Site Accent (Apple Blue)
+            fillOpacity: 0.6,
+            color: '#2997ff',
+            weight: 1.5,
+            opacity: 1
         });
 
         layer.bindPopup(`<strong>${feature.properties.name}</strong><br>Visited ✅`);
