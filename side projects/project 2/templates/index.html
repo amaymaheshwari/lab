@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amay Maheshwari</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-icon">⚡</div>
                     <h3>Project Two</h3>
-                    <p>Something amazing is being built here. Stay tuned for the next big thing.</p>
+                    <p>This dynamic website engine. Driven by Flask and auto-insert logic.</p>
                 </div>
 
                 <div class="card">
@@ -65,24 +65,24 @@
         <!-- Travel (Wanderlust) -->
         <section id="travel">
             <h2>Wanderlust</h2>
-            <p style="margin-bottom:30px">Snapshots from my adventures around the globe.</p>
+            <p style="margin-bottom:30px">Snapshots from my adventures around the globe. (Drop photos in
+                <code>static/photos</code>)</p>
             <div class="masonry">
-                <!-- Placeholders: Using Unsplash for demo, User should replace -->
+                {% if photos %}
+                {% for photo in photos %}
+                <div class="photo-item">
+                    <img src="{{ url_for('static', filename='photos/' + photo) }}" alt="Travel Photo">
+                </div>
+                {% endfor %}
+                {% else %}
+                <!-- Fallback Placeholders -->
                 <div class="photo-item"><img
                         src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80" alt="Travel 1">
                 </div>
                 <div class="photo-item"><img
                         src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Travel 2">
                 </div>
-                <div class="photo-item"><img
-                        src="https://images.unsplash.com/photo-1499856871940-a09627c6dcf6?w=500&q=80" alt="Travel 3">
-                </div>
-                <div class="photo-item"><img
-                        src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=80" alt="Travel 4">
-                </div>
-                <div class="photo-item"><img
-                        src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&q=80" alt="Travel 5">
-                </div>
+                {% endif %}
             </div>
         </section>
 
@@ -99,39 +99,33 @@
             <!-- History Content -->
             <div id="history" class="tab-content active">
                 <div class="video-grid">
+                    {% for url in videos.get('history', []) %}
                     <div class="video-card">
-                        <!-- Placeholder Video ID -->
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="History 1"></iframe>
-                        <h4>The Fall of Civilizations</h4>
+                        <iframe src="https://www.youtube.com/embed/{{ get_video_id(url) }}" title="Video"></iframe>
                     </div>
-                    <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="History 2"></iframe>
-                        <h4>Ancient Engineering</h4>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
             <!-- Tech Content -->
             <div id="tech" class="tab-content">
                 <div class="video-grid">
+                    {% for url in videos.get('tech', []) %}
                     <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tech 1"></iframe>
-                        <h4>Future of AI</h4>
+                        <iframe src="https://www.youtube.com/embed/{{ get_video_id(url) }}" title="Video"></iframe>
                     </div>
-                    <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tech 2"></iframe>
-                        <h4>Coding Aesthetics</h4>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
             <!-- Cars Content -->
             <div id="cars" class="tab-content">
                 <div class="video-grid">
+                    {% for url in videos.get('cars', []) %}
                     <div class="video-card">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Cars 1"></iframe>
-                        <h4>Porsche 911 GT3 Review</h4>
+                        <iframe src="https://www.youtube.com/embed/{{ get_video_id(url) }}" title="Video"></iframe>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -176,7 +170,7 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
