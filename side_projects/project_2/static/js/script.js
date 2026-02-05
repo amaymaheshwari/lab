@@ -221,15 +221,19 @@ if (bot) {
         bot.classList.add('walking');
         let direction = 1;
 
+        // Ensure starting face
+        bot.style.transform = 'scaleX(1)';
+
         walkInterval = setInterval(() => {
             if (isJumping) return;
             const rect = element.getBoundingClientRect();
             const currentLeft = parseFloat(bot.style.left) || 0;
             const speed = 2; // px per tick
 
-            // Bounds
-            const maxLeft = rect.left + rect.width - 40;
-            const minLeft = rect.left;
+            // Bounds: Tighter to stay on top of text
+            // rect.width is now exactly the text width (due to fit-content)
+            const maxLeft = rect.left + rect.width - 60; // Turn before falling off right
+            const minLeft = rect.left + 10; // Turn before falling off left
 
             let newLeft = currentLeft + (speed * direction);
 
