@@ -383,72 +383,90 @@ input[type=range]::-webkit-slider-runnable-track {
             flex-direction: column-reverse;
             /* Controls below chart */
             height: auto;
-            overflow-y: auto;
+            min-height: 100vh;
+            overflow-y: visible;
+            /* Allow scrolling */
         }
 
         .sidebar {
             width: 100%;
             height: auto;
-            min-height: 50vh;
+            /* Remove fixed min-height, let content dictate */
             border-right: none;
             border-top: 1px solid var(--glass-border);
-            padding: 20px;
+            padding: 15px;
+            padding-bottom: 40px;
+            /* Safe area */
+            background: rgba(10, 10, 10, 0.95);
+            /* darker for separation */
         }
 
         .main-panel {
-            padding: 20px;
-            min-height: 60vh;
-            /* Ensure chart has space */
+            padding: 10px;
+            width: 100%;
+            height: auto;
+            display: block;
+            /* Remove flex here to let chart sit naturally */
         }
 
         .chart-wrapper {
             transform: none;
-            /* Disable 3D tilt on mobile for performance/space */
             border-radius: 12px;
+            height: 350px;
+            /* Fixed height for consistency */
+            margin-bottom: 0;
+            width: 100%;
         }
 
         /* Adjust News Banner */
         .news-banner {
-            width: 95%;
-            padding: 10px 15px;
+            width: 92%;
+            padding: 8px 12px;
             top: 10px;
             flex-direction: row;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .news-headline {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .news-subtext {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         /* Timeline Grid */
         .timeline-grid {
             grid-template-columns: 1fr;
-            padding: 20px;
+            padding: 15px;
             height: auto;
+            gap: 20px;
         }
 
         .timeline-header h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
+            margin-top: 40px;
         }
 
         .era-card {
-            height: 250px;
+            height: 220px;
+            padding: 25px;
         }
 
-        /* Asset List Mobile Sizing */
+        .era-year {
+            font-size: 3.5rem;
+            top: 15px;
+            right: 20px;
+        }
+
+        /* Asset List */
         .card-assets {
-            max-height: 400px;
-            /* Limit height so controls don't stretch forever */
+            max-height: none;
+            /* Expand fully */
         }
 
-        /* Hide decorative logs on really small screens if needed, 
-       but keep for now as it adds flavor */
         #event-log {
-            height: 120px;
-            padding: 10px;
+            display: none;
+            /* Hide log on mobile to save space */
         }
     }
