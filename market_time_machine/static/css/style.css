@@ -376,5 +376,79 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .mono {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
-}
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 900px) {
+        .app-container {
+            flex-direction: column-reverse;
+            /* Controls below chart */
+            height: auto;
+            overflow-y: auto;
+        }
+
+        .sidebar {
+            width: 100%;
+            height: auto;
+            min-height: 50vh;
+            border-right: none;
+            border-top: 1px solid var(--glass-border);
+            padding: 20px;
+        }
+
+        .main-panel {
+            padding: 20px;
+            min-height: 60vh;
+            /* Ensure chart has space */
+        }
+
+        .chart-wrapper {
+            transform: none;
+            /* Disable 3D tilt on mobile for performance/space */
+            border-radius: 12px;
+        }
+
+        /* Adjust News Banner */
+        .news-banner {
+            width: 95%;
+            padding: 10px 15px;
+            top: 10px;
+            flex-direction: row;
+            font-size: 0.9rem;
+        }
+
+        .news-headline {
+            font-size: 0.9rem;
+        }
+
+        .news-subtext {
+            font-size: 0.75rem;
+        }
+
+        /* Timeline Grid */
+        .timeline-grid {
+            grid-template-columns: 1fr;
+            padding: 20px;
+            height: auto;
+        }
+
+        .timeline-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .era-card {
+            height: 250px;
+        }
+
+        /* Asset List Mobile Sizing */
+        .card-assets {
+            max-height: 400px;
+            /* Limit height so controls don't stretch forever */
+        }
+
+        /* Hide decorative logs on really small screens if needed, 
+       but keep for now as it adds flavor */
+        #event-log {
+            height: 120px;
+            padding: 10px;
+        }
+    }
