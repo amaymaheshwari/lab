@@ -34,7 +34,11 @@ def get_latest_songs():
     # Fetch fresh
     try:
         # Convert Channel ID (UC...) to Uploads Playlist ID (UU...)
-        playlist_id = MUSIC_CHANNEL_ID.replace('UC', 'UU', 1) if MUSIC_CHANNEL_ID.startswith('UC') else MUSIC_CHANNEL_ID
+        # If it's already a playlist (PL...) or uploads (UU...), use as is.
+        if MUSIC_CHANNEL_ID.startswith('UC'):
+             playlist_id = MUSIC_CHANNEL_ID.replace('UC', 'UU', 1) 
+        else:
+             playlist_id = MUSIC_CHANNEL_ID
         playlist_url = f"https://www.youtube.com/playlist?list={playlist_id}"
         
         ydl_opts = {
