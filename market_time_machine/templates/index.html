@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Market Time Machine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="timeline-grid">
+        <header style="grid-column: 1/-1; margin-bottom: 20px;">
+            <h1>Market Time Machine_</h1>
+            <p class="mono" style="color: grey;">SELECT_HISTORICAL_SCENARIO</p>
+        </header>
+
+        {% for era in scenarios %}
+        <div class="era-card" onclick="window.location.href='/simulate/{{ era.id }}'">
+            <div style="position:relative;">
+                <span class="era-year">{{ era.year_start }}</span>
+                <h2>{{ era.name }}</h2>
+                <p style="margin-top:10px; color: #888;">{{ era.description }}</p>
+                <div class="mono" style="margin-top:20px; font-size: 0.8rem;">
+                    > INITIALIZE_SIMULATION
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

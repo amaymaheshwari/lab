@@ -1,0 +1,168 @@
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: #131722;
+    --text-primary: #d1d4dc;
+    --text-secondary: #787b86;
+    --accent-green: #00ff9d;
+    /* Profit */
+    --accent-red: #ff3b30;
+    /* Loss */
+    --grid-line: #2a2e39;
+    --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+    --font-ui: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    height: 100vh;
+    overflow: hidden;
+    /* App feel */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- Layout --- */
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar (Controls) */
+.sidebar {
+    width: 350px;
+    background: var(--card-bg);
+    border-right: 1px solid var(--grid-line);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3 {
+    color: #fff;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.mono {
+    font-family: var(--font-mono);
+}
+
+.green {
+    color: var(--accent-green);
+}
+
+.red {
+    color: var(--accent-red);
+}
+
+/* --- Components --- */
+.card {
+    background: var(--bg-color);
+    border: 1px solid var(--grid-line);
+    border-radius: 4px;
+    /* Sharp corners for terminal feel */
+    padding: 15px;
+}
+
+/* Timeline Cards */
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.era-card {
+    background: var(--card-bg);
+    border: 1px solid var(--grid-line);
+    padding: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.era-card:hover {
+    border-color: var(--accent-green);
+}
+
+.era-year {
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.1;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+/* Simulation Controls */
+.asset-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--grid-line);
+}
+
+input[type="range"] {
+    flex: 1;
+    margin: 0 15px;
+    accent-color: var(--text-primary);
+}
+
+.portfolio-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: right;
+    font-family: var(--font-mono);
+}
+
+.btn {
+    background: var(--text-primary);
+    color: #000;
+    padding: 12px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Chart Container */
+.chart-wrapper {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--grid-line);
+    border-radius: 4px;
+    position: relative;
+}

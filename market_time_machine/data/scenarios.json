@@ -1,0 +1,199 @@
+{
+    "eras": [
+        {
+            "id": "dotcom_bubble",
+            "name": "The Dot-Com Bubble (1999-2002)",
+            "year_start": 1999,
+            "year_end": 2002,
+            "description": "Tech stocks are soaring to astronomical valuations. Will you ride the wave or pivot to safety?",
+            "assets": [
+                {
+                    "ticker": "AMZN",
+                    "name": "Amazon.com",
+                    "sector": "Tech",
+                    "type": "Stock"
+                },
+                {
+                    "ticker": "CSCO",
+                    "name": "Cisco Systems",
+                    "sector": "Tech",
+                    "type": "Stock"
+                },
+                {
+                    "ticker": "PETS",
+                    "name": "Pets.com",
+                    "sector": "Tech",
+                    "type": "Stock",
+                    "fate": "Bankrupt"
+                },
+                {
+                    "ticker": "SPY",
+                    "name": "S&P 500 ETF",
+                    "sector": "Index",
+                    "type": "Index"
+                },
+                {
+                    "ticker": "GLD",
+                    "name": "Gold",
+                    "sector": "Commodity",
+                    "type": "Commodity"
+                }
+            ],
+            "market_data": {
+                "timestamps": [
+                    "1999-01",
+                    "1999-06",
+                    "2000-01",
+                    "2000-03",
+                    "2000-06",
+                    "2001-01",
+                    "2002-01"
+                ],
+                "prices": {
+                    "AMZN": [
+                        60,
+                        85,
+                        95,
+                        105,
+                        50,
+                        15,
+                        10
+                    ],
+                    "CSCO": [
+                        40,
+                        55,
+                        70,
+                        80,
+                        60,
+                        30,
+                        15
+                    ],
+                    "PETS": [
+                        10,
+                        12,
+                        14,
+                        11,
+                        2,
+                        0,
+                        0
+                    ],
+                    "SPY": [
+                        120,
+                        130,
+                        145,
+                        150,
+                        140,
+                        120,
+                        100
+                    ],
+                    "GLD": [
+                        280,
+                        260,
+                        280,
+                        290,
+                        280,
+                        265,
+                        300
+                    ]
+                }
+            },
+            "events": [
+                {
+                    "date": "2000-03",
+                    "title": "NASDAQ Peaks",
+                    "description": "The tech heavy index hits an all-time high of 5,048."
+                },
+                {
+                    "date": "2000-11",
+                    "title": "Pets.com Collapses",
+                    "description": "The poster child of the bubble goes under just 9 months after IPO."
+                }
+            ]
+        },
+        {
+            "id": "great_recession",
+            "name": "The Great Recession (2007-2009)",
+            "year_start": 2007,
+            "year_end": 2009,
+            "description": "The housing market is beginning to show cracks. Subprime mortgages are everywhere.",
+            "assets": [
+                {
+                    "ticker": "LEH",
+                    "name": "Lehman Brothers",
+                    "sector": "Finance",
+                    "type": "Stock",
+                    "fate": "Bankrupt"
+                },
+                {
+                    "ticker": "AAPL",
+                    "name": "Apple",
+                    "sector": "Tech",
+                    "type": "Stock"
+                },
+                {
+                    "ticker": "SPY",
+                    "name": "S&P 500 ETF",
+                    "sector": "Index",
+                    "type": "Index"
+                },
+                {
+                    "ticker": "TLT",
+                    "name": "Treasury Bonds",
+                    "sector": "Bonds",
+                    "type": "Bond"
+                }
+            ],
+            "market_data": {
+                "timestamps": [
+                    "2007-06",
+                    "2007-12",
+                    "2008-03",
+                    "2008-09",
+                    "2008-12",
+                    "2009-03"
+                ],
+                "prices": {
+                    "LEH": [
+                        75,
+                        60,
+                        40,
+                        0,
+                        0,
+                        0
+                    ],
+                    "AAPL": [
+                        5,
+                        6,
+                        5,
+                        4,
+                        3,
+                        3
+                    ],
+                    "SPY": [
+                        150,
+                        140,
+                        130,
+                        110,
+                        90,
+                        70
+                    ],
+                    "TLT": [
+                        85,
+                        90,
+                        95,
+                        100,
+                        115,
+                        120
+                    ]
+                }
+            },
+            "events": [
+                {
+                    "date": "2008-09",
+                    "title": "Lehman Brothers Files for Bankruptcy",
+                    "description": "The largest bankruptcy filing in U.S. history sends shockwaves."
+                }
+            ]
+        }
+    ]
+}
