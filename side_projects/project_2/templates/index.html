@@ -163,7 +163,6 @@
             <!-- Head Group -->
             <g id="head-group" transform="translate(32, 15)">
                 <circle cx="0" cy="0" r="14" fill="white" stroke="none" />
-                <!-- Glasses -->
                 <g stroke="#000" stroke-width="2.5" fill="none">
                     <circle cx="-6" cy="0" r="4" />
                     <circle cx="6" cy="0" r="4" />
@@ -177,50 +176,62 @@
             <line x1="32" y1="29" x2="32" y2="55" stroke="white" stroke-width="6" stroke-linecap="round" />
 
             <!-- Right Leg (Behind) -->
-            <g class="leg right-leg" transform="translate(32, 55)">
-                <line x1="0" y1="0" x2="0" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"
-                    class="thigh" />
-                <g transform="translate(0, 22)" class="shin-group">
-                    <line x1="0" y1="0" x2="0" y2="25" stroke="white" stroke-width="6" stroke-linecap="round"
-                        class="shin" />
-                    <!-- Shoe -->
-                    <path d="M -5 26 L 10 26 C 12 26 12 20 8 20 L -3 20 Z" fill="#999" />
+            <g transform="translate(32, 55)">
+                <g class="leg right-leg">
+                    <line x1="0" y1="0" x2="0" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"
+                        class="thigh" />
+                    <g transform="translate(0, 22)">
+                        <g class="shin-group">
+                            <line x1="0" y1="0" x2="0" y2="25" stroke="white" stroke-width="6" stroke-linecap="round"
+                                class="shin" />
+                            <path d="M -5 26 L 10 26 C 12 26 12 20 8 20 L -3 20 Z" fill="#999" />
+                        </g>
+                    </g>
                 </g>
             </g>
 
             <!-- Left Leg (Front) -->
-            <g class="leg left-leg" transform="translate(32, 55)">
-                <line x1="0" y1="0" x2="0" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"
-                    class="thigh" />
-                <g transform="translate(0, 22)" class="shin-group">
-                    <line x1="0" y1="0" x2="0" y2="25" stroke="white" stroke-width="6" stroke-linecap="round"
-                        class="shin" />
-                    <!-- Shoe -->
-                    <path d="M -5 26 L 10 26 C 12 26 12 20 8 20 L -3 20 Z" fill="#999" />
+            <g transform="translate(32, 55)">
+                <g class="leg left-leg">
+                    <line x1="0" y1="0" x2="0" y2="22" stroke="white" stroke-width="6" stroke-linecap="round"
+                        class="thigh" />
+                    <g transform="translate(0, 22)">
+                        <g class="shin-group">
+                            <line x1="0" y1="0" x2="0" y2="25" stroke="white" stroke-width="6" stroke-linecap="round"
+                                class="shin" />
+                            <path d="M -5 26 L 10 26 C 12 26 12 20 8 20 L -3 20 Z" fill="#999" />
+                        </g>
+                    </g>
                 </g>
             </g>
 
             <!-- Right Arm -->
-            <g class="arm right-arm" transform="translate(32, 32)">
-                <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
-                    class="upper-arm" />
-                <g transform="translate(0, 18)" class="forearm-group">
+            <g transform="translate(32, 32)">
+                <g class="arm right-arm">
                     <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
-                        class="forearm" />
-                    <!-- Hand -->
-                    <circle cx="0" cy="21" r="5" fill="white" />
+                        class="upper-arm" />
+                    <g transform="translate(0, 18)">
+                        <g class="forearm-group">
+                            <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
+                                class="forearm" />
+                            <circle cx="0" cy="21" r="5" fill="white" />
+                        </g>
+                    </g>
                 </g>
             </g>
 
             <!-- Left Arm -->
-            <g class="arm left-arm" transform="translate(32, 32)">
-                <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
-                    class="upper-arm" />
-                <g transform="translate(0, 18)" class="forearm-group">
+            <g transform="translate(32, 32)">
+                <g class="arm left-arm">
                     <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
-                        class="forearm" />
-                    <!-- Hand -->
-                    <circle cx="0" cy="21" r="5" fill="white" />
+                        class="upper-arm" />
+                    <g transform="translate(0, 18)">
+                        <g class="forearm-group">
+                            <line x1="0" y1="0" x2="0" y2="18" stroke="white" stroke-width="5" stroke-linecap="round"
+                                class="forearm" />
+                            <circle cx="0" cy="21" r="5" fill="white" />
+                        </g>
+                    </g>
                 </g>
             </g>
         </svg>
