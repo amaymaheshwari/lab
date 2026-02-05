@@ -315,20 +315,11 @@ nav {
 }
 
 /* --- Skeleton Joints (Crucial for Connection) --- */
-.arm {
-    transform-origin: 32px 32px;
-}
-
-.forearm-group {
-    transform-origin: 32px 50px;
-}
-
-.leg {
-    transform-origin: 32px 55px;
-}
-
+.arm,
+.forearm-group,
+.leg,
 .shin-group {
-    transform-origin: 32px 77px;
+    transform-origin: 0px 0px !important;
 }
 
 /* --- Parkour Bot Interactions --- */
