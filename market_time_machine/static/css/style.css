@@ -486,12 +486,12 @@ input[type=range]::-webkit-slider-runnable-track {
 
         .currency-symbol {
             position: absolute;
-            color: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.15);
             font-family: var(--font-mono);
             font-weight: 800;
             user-select: none;
             will-change: transform, opacity;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
         @keyframes drift {
