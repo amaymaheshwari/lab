@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amay Maheshwari</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">AMAY.</a>
+            <div class="nav-links">
+                <a href="#projects">Work</a>
+                <a href="#travel">Travel</a>
+                <a href="#mind">Mind</a>
+                <a href="#music">Music</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Builder. Explorer. <br>Curious Mind.</h1>
+            <p>Hi, I'm Amay. I build things with code, explore the world, and curate the best of what I learn. Welcome
+                to my digital home.</p>
+            <a href="#resume-section" class="btn">Download Resume</a>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2>Selected Work</h2>
+            <div class="grid">
+                <!-- AI News Bot Card -->
+                <div class="card" onclick="window.open('../ai_news_bot', '_blank')">
+                    <!-- Just linking relatively for demo -->
+                    <div class="card-icon">🤖</div>
+                    <h3>AI News Bot</h3>
+                    <p>An automated news aggregator that scrapes RSS feeds, uses AI to summarize stories, and hosts a
+                        premium dashboard.</p>
+                    <div style="margin-top:15px; font-size:0.8rem; opacity:0.6;">Python • Flask • AI</div>
+                </div>
+
+                <!-- Placeholder Project -->
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Project Two</h3>
+                    <p>Something amazing is being built here. Stay tuned for the next big thing.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🐙</div>
+                    <h3>GitHub</h3>
+                    <p>Check out my open source contributions and code experiments.</p>
+                    <a href="https://github.com/SharpSniper0/ytdlp" target="_blank"
+                        style="margin-top:10px; display:block;">View Profile &nearr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Travel (Wanderlust) -->
+        <section id="travel">
+            <h2>Wanderlust</h2>
+            <p style="margin-bottom:30px">Snapshots from my adventures around the globe.</p>
+            <div class="masonry">
+                <!-- Placeholders: Using Unsplash for demo, User should replace -->
+                <div class="photo-item"><img
+                        src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80" alt="Travel 1">
+                </div>
+                <div class="photo-item"><img
+                        src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Travel 2">
+                </div>
+                <div class="photo-item"><img
+                        src="https://images.unsplash.com/photo-1499856871940-a09627c6dcf6?w=500&q=80" alt="Travel 3">
+                </div>
+                <div class="photo-item"><img
+                        src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=80" alt="Travel 4">
+                </div>
+                <div class="photo-item"><img
+                        src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&q=80" alt="Travel 5">
+                </div>
+            </div>
+        </section>
+
+        <!-- What's on my mind (Tabs: History, Tech, Cars) -->
+        <section id="mind">
+            <h2>What's on my mind</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab('history')">History</button>
+                <button class="tab-btn" onclick="openTab('tech')">Tech</button>
+                <button class="tab-btn" onclick="openTab('cars')">Cars</button>
+            </div>
+
+            <!-- History Content -->
+            <div id="history" class="tab-content active">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <!-- Placeholder Video ID -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="History 1"></iframe>
+                        <h4>The Fall of Civilizations</h4>
+                    </div>
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="History 2"></iframe>
+                        <h4>Ancient Engineering</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Content -->
+            <div id="tech" class="tab-content">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tech 1"></iframe>
+                        <h4>Future of AI</h4>
+                    </div>
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tech 2"></iframe>
+                        <h4>Coding Aesthetics</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cars Content -->
+            <div id="cars" class="tab-content">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Cars 1"></iframe>
+                        <h4>Porsche 911 GT3 Review</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music -->
+        <section id="music">
+            <h2>Vibes</h2>
+            <div class="music-grid">
+                <a href="#" class="music-link">
+                    <span>🎵</span>
+                    <div>
+                        <strong>Current Favorites</strong>
+                        <div style="font-size:0.8rem; color:var(--text-secondary)">Spotify Playlist</div>
+                    </div>
+                </a>
+                <a href="#" class="music-link">
+                    <span>🍎</span>
+                    <div>
+                        <strong>Chill Mix</strong>
+                        <div style="font-size:0.8rem; color:var(--text-secondary)">Apple Music</div>
+                    </div>
+                </a>
+                <a href="#" class="music-link">
+                    <span>▶️</span>
+                    <div>
+                        <strong>Coding LoFi</strong>
+                        <div style="font-size:0.8rem; color:var(--text-secondary)">YouTube Music</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Resume -->
+        <section id="resume-section" class="resume-section">
+            <h2>Work with me.</h2>
+            <p style="margin-bottom:30px">Download my resume to see my full professional history.</p>
+            <a href="#" class="btn" download>Download PDF</a>
+        </section>
+
+        <footer style="text-align: center; padding: 50px 0; color: #444;">
+            &copy; 2026 Amay Maheshwari. Built with Code.
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

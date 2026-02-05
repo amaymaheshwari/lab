@@ -1,0 +1,190 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo">AI Shorts</div>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Swipe Container -->
+    <div id="feed-container">
+        <div class="loader" id="mainLoader">Loading Stories...</div>
+    </div>
+
+    <!-- Settings Menu Drawer -->
+    <div class="menu-drawer" id="menuDrawer">
+        <div class="drawer-header">
+            <span style="font-weight:700; font-size:1.2rem;">Control Center</span>
+            <button class="close-menu" onclick="toggleMenu()">&times;</button>
+        </div>
+
+        <div class="menu-section">
+            <h3>Actions</h3>
+            <div class="control-row">
+                <button class="btn-menu" id="runNowBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 3l14 9-14 9V3z" />
+                    </svg>
+                    Run Job
+                </button>
+                <button class="btn-menu" onclick="fetchNews()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 4v6h-6"></path>
+                        <path d="M1 20v-6h6"></path>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                    </svg>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>Subscribers</h3>
+            <div style="display:flex; gap:5px;">
+                <input type="email" id="emailInput" placeholder="Add email...">
+                <button class="btn-menu" id="addBtn" style="width:auto;">+</button>
+            </div>
+            <div id="subscriberList"></div>
+        </div>
+    </div>
+
+    <!-- Overlay Helper -->
+    <div class="nav-hint" id="navHint">
+        <!-- Dots injected by JS -->
+    </div>
+
+    <script>
+        // --- UI Logic ---
+        function toggleMenu() {
+            document.getElementById('menuDrawer').classList.toggle('open');
+        }
+
+        // --- Data Logic ---
+        const API_URL = '/api/subscribers';
+
+        async function fetchNews() {
+            const container = document.getElementById('feed-container');
+            const loader = document.getElementById('mainLoader');
+
+            // Don't clear immediately if we have content, maybe overlay loader?
+            // For now, simple clear is fine for "refresh"
+            container.innerHTML = '';
+            container.appendChild(loader);
+            loader.style.display = 'flex';
+
+            try {
+                const res = await fetch('/api/news');
+                const news = await res.json();
+
+                loader.style.display = 'none';
+
+                if (news.error || news.length === 0) {
+                    container.innerHTML = `<div class="news-slide">
+                        <div class="slide-content" style="text-align:center;">
+                            <h2>No News Available</h2>
+                            <p>Try running the job from the menu.</p>
+                        </div>
+                    </div>`;
+                    return;
+                }
+
+                // Render Slides
+                news.forEach((item, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'news-slide';
+
+                    // Truncate summary for visual balance if too long
+                    const summary = item.summary.length > 500 ? item.summary.substring(0, 500) + '...' : item.summary;
+
+                    slide.innerHTML = `
+                        <div class="slide-content">
+                            <div class="source-badge">${item.source}</div>
+                            <h2 class="slide-title">${item.title}</h2>
+                            <p class="slide-summary">${summary}</p>
+                            
+                            <div class="slide-actions">
+                                <span class="slide-meta">${timeSince(item.published)}</span>
+                                <a href="${item.link}" target="_blank" class="read-btn">Read Story ↗</a>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(slide);
+                });
+
+            } catch (err) {
+                container.innerHTML = `<div class="news-slide" style="color:red">Error loading feed.</div>`;
+                console.error(err);
+            }
+        }
+
+        // Helper: Time Since
+        function timeSince(dateStr) {
+            // Simple placeholder, real parsing depends on format. 
+            // Just returning the raw string or a cleaned version is safer for now.
+            return dateStr;
+        }
+
+        // --- Subscriber Logic (Same as before) ---
+        async function fetchSubscribers() {
+            const res = await fetch(API_URL);
+            const data = await res.json();
+            renderList(data);
+        }
+
+        function renderList(emails) {
+            const list = document.getElementById('subscriberList');
+            list.innerHTML = '';
+            emails.forEach(email => {
+                const div = document.createElement('div');
+                div.className = 'sub-item';
+                div.innerHTML = `
+                    <span>${email}</span>
+                    <button onclick="removeSubscriber('${email}')" style="background:none;border:none;color:red;cursor:pointer;">&times;</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        async function addSubscriber() {
+            const input = document.getElementById('emailInput');
+            const email = input.value;
+            if (!email) return;
+            const res = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+            const data = await res.json();
+            if (!data.error) { input.value = ''; renderList(data); }
+        }
+
+        async function removeSubscriber(email) {
+            const res = await fetch(API_URL, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+            const data = await res.json();
+            renderList(data);
+        }
+
+        document.getElementById('addBtn').addEventListener('click', addSubscriber);
+        document.getElementById('runNowBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('runNowBtn');
+            btn.innerHTML = 'Running...';
+            btn.disabled = true;
+            await fetch('/api/run-now', { method: 'POST' });
+            setTimeout(() => { btn.innerHTML = 'Job Started'; btn.disabled = false; }, 2000);
+        });
+
+        // Init
+        fetchNews();
+        fetchSubscribers();
+    </script>
+</body>
+
+</html>
