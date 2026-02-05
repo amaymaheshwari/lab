@@ -19,6 +19,13 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    line-height: 1.5;
     overflow-x: hidden;
 }
 
