@@ -1410,6 +1410,185 @@
                     "description": "The largest bankruptcy filing in U.S. history sends shockwaves through the global system."
                 }
             ]
+        },
+        {
+            "id": "post_covid_bubble",
+            "name": "The Everything Bubble (2020-2022)",
+            "year_start": 2020,
+            "year_end": 2022,
+            "description": "Fed printers are brrr-ing. Crypto is mooning. Meme stocks are defying logic. Can you time the top?",
+            "assets": [
+                {
+                    "ticker": "BTC",
+                    "name": "Bitcoin",
+                    "description": "Digital Gold. Institutional adoption is here. Laser eyes everywhere. To the moon?",
+                    "sector": "Crypto",
+                    "type": "Crypto",
+                    "fate": "Crash"
+                },
+                {
+                    "ticker": "GME",
+                    "name": "GameStop",
+                    "description": "Power to the players. The hedge funds are short, and Reddit is angry. Diamond hands.",
+                    "sector": "Meme",
+                    "type": "Stock",
+                    "fate": "Volatile"
+                },
+                {
+                    "ticker": "ZM",
+                    "name": "Zoom Video",
+                    "description": "The new way we live. If you work from home, you use Zoom. Valuation > Exxon Mobil?",
+                    "sector": "Tech",
+                    "type": "Stock",
+                    "fate": "Crash"
+                },
+                {
+                    "ticker": "TSLA",
+                    "name": "Tesla",
+                    "description": "EV revolution. S&P 500 inclusion. Is it a car company or a tech company?",
+                    "sector": "Auto",
+                    "type": "Stock"
+                },
+                {
+                    "ticker": "ARKK",
+                    "name": "ARK Innovation",
+                    "description": "Disruptive innovation ETF. Betting on the future, regardless of price.",
+                    "sector": "Fund",
+                    "type": "ETF",
+                    "fate": "Crash"
+                },
+                {
+                    "ticker": "SPY",
+                    "name": "S&P 500",
+                    "description": "The reopening trade. Airlines and Cruise lines are dead, but Tech carries the index.",
+                    "sector": "Index",
+                    "type": "Index"
+                },
+                {
+                    "ticker": "USD",
+                    "name": "US Dollar",
+                    "description": "Inflation is 'transitory'. Cash is trash... until the Fed hikes rates.",
+                    "sector": "Forex",
+                    "type": "Cash"
+                }
+            ],
+            "market_data": {
+                "timestamps": [
+                    "Jan 20",
+                    "Mar 20",
+                    "Jun 20",
+                    "Sep 20",
+                    "Jan 21",
+                    "Apr 21",
+                    "Nov 21",
+                    "Jan 22",
+                    "Jun 22",
+                    "Dec 22"
+                ],
+                "prices": {
+                    "BTC": [
+                        7200,
+                        5000,
+                        9000,
+                        10500,
+                        35000,
+                        60000,
+                        69000,
+                        40000,
+                        20000,
+                        16000
+                    ],
+                    "GME": [
+                        4,
+                        3,
+                        5,
+                        10,
+                        350,
+                        150,
+                        200,
+                        100,
+                        80,
+                        20
+                    ],
+                    "ZM": [
+                        70,
+                        150,
+                        250,
+                        450,
+                        350,
+                        300,
+                        200,
+                        150,
+                        100,
+                        70
+                    ],
+                    "TSLA": [
+                        30,
+                        25,
+                        60,
+                        140,
+                        250,
+                        220,
+                        400,
+                        350,
+                        220,
+                        120
+                    ],
+                    "ARKK": [
+                        50,
+                        35,
+                        60,
+                        90,
+                        150,
+                        120,
+                        100,
+                        70,
+                        40,
+                        30
+                    ],
+                    "SPY": [
+                        320,
+                        230,
+                        300,
+                        340,
+                        370,
+                        410,
+                        470,
+                        450,
+                        380,
+                        380
+                    ],
+                    "USD": [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            },
+            "events": [
+                {
+                    "date": "Mar 20",
+                    "title": "COVID-19 Crash",
+                    "description": "Global lockdowns. Markets plummet 33% in weeks. 'The end of the world'."
+                },
+                {
+                    "date": "Jan 21",
+                    "title": "Meme Stock Mania",
+                    "description": "Retail traders vs Wall Street. GameStop hits $483. 'We like the stock'."
+                },
+                {
+                    "date": "Nov 21",
+                    "title": "The Peak",
+                    "description": "Bitcoin hits $69k. Inflation hits 40-year highs. The Fed wakes up."
+                }
+            ]
         }
     ]
 }
