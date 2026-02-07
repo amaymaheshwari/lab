@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Simulating: {{ era.name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=12">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=14">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
@@ -92,7 +92,13 @@
                         <div
                             style="display:flex; align-items:center; gap:5px; width:100%; justify-content:space-between;">
                             <div style="display:flex; align-items:center;">
-                                <span class="mono" style="font-weight:bold; color:#fff;">{{ asset.ticker }}</span>
+                                <!-- Ticker Name is now a trigger too -->
+                                <span class="mono tooltip-trigger"
+                                    style="font-weight:bold; color:#fff; margin-right:5px; cursor:help;"
+                                    data-tooltip="{{ asset.description }}" data-name="{{ asset.name }}">
+                                    {{ asset.ticker }}
+                                </span>
+
                                 <div class="tooltip-trigger" data-tooltip="{{ asset.description }}"
                                     data-name="{{ asset.name }}">
                                     <span class="info-icon">?</span>
@@ -211,9 +217,11 @@
             // Mobile/Click (Toggle)
             trigger.addEventListener('click', (e) => {
                 e.stopPropagation(); // Prevent doc click
+                // If this Trigger is already active and visible, hide it.
                 if (activeTrigger === trigger && tooltip.classList.contains('visible')) {
                     hideTooltip();
                 } else {
+                    // Otherwise show it
                     showTooltip(trigger);
                 }
             });
@@ -221,6 +229,7 @@
 
         // Close on outside click
         document.addEventListener('click', (e) => {
+            // Close if clicking outside trigger AND outside the tooltip itself
             if (!e.target.closest('.tooltip-trigger') && !e.target.closest('#global-tooltip')) {
                 hideTooltip();
             }
