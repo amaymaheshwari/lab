@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Pulse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="dashboard">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <div>
+            <h1>Macro Pulse</h1>
+            <p>Live economic indicators &mdash; <a href="/simulate" style="color:var(--accent)">compare to history &rarr;</a></p>
+        </div>
+        <span id="last-updated" style="color:var(--text-secondary)">Loading...</span>
+    </div>
+
+    <!-- API Key Warning -->
+    {% if not has_fred_key %}
+    <div class="api-warning">
+        <strong>FRED API key not configured.</strong> Set <code>FRED_API_KEY</code> in your <code>.env</code> file to load live data.
+        Get a free key at <strong>fred.stlouisfed.org/docs/api/api_key.html</strong>
+    </div>
+    {% endif %}
+
+    <!-- KPI Cards -->
+    <div class="kpi-row">
+        <div class="kpi-card" id="kpi-cpi">
+            <div class="kpi-label">CPI Inflation (YoY)</div>
+            <div class="kpi-value">--</div>
+            <div class="kpi-sub">Year-over-year change</div>
+        </div>
+        <div class="kpi-card" id="kpi-unemployment">
+            <div class="kpi-label">Unemployment Rate</div>
+            <div class="kpi-value">--</div>
+            <div class="kpi-sub">US Bureau of Labor Statistics</div>
+        </div>
+        <div class="kpi-card" id="kpi-treasury">
+            <div class="kpi-label">10-Year Treasury Yield</div>
+            <div class="kpi-value">--</div>
+            <div class="kpi-sub">Constant maturity rate</div>
+        </div>
+        <div class="kpi-card" id="kpi-fedfunds">
+            <div class="kpi-label">Fed Funds Rate</div>
+            <div class="kpi-value">--</div>
+            <div class="kpi-sub">Effective federal funds rate</div>
+        </div>
+    </div>
+
+    <!-- Row 1: S&P 500 (wide) + 10yr Treasury (narrow) -->
+    <div class="chart-row two-col">
+        <div class="chart-panel">
+            <div class="chart-panel-header">
+                <h3>S&amp;P 500</h3>
+                <span class="chart-sub">90 days</span>
+            </div>
+            <div class="chart-canvas-wrapper tall">
+                <canvas id="spChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-panel">
+            <div class="chart-panel-header">
+                <h3>10-Year Treasury Yield</h3>
+                <span class="chart-sub">60 days</span>
+            </div>
+            <div class="chart-canvas-wrapper tall">
+                <canvas id="treasuryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: Unemployment + G7 GDP -->
+    <div class="chart-row equal">
+        <div class="chart-panel">
+            <div class="chart-panel-header">
+                <h3>Unemployment Rate</h3>
+                <span class="chart-sub">24 months</span>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="unemploymentChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-panel gdp-panel">
+            <div class="chart-panel-header">
+                <h3>G7 GDP Growth</h3>
+                <span class="chart-sub" id="gdp-year"></span>
+            </div>
+            <div class="chart-canvas-wrapper">
+                <canvas id="gdpChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Historical Context -->
+    <div class="context-panel">
+        <div class="context-panel-header">
+            <div>
+                <h3>Historical Context</h3>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <span class="context-tag">Gemini 2.0 Flash</span>
+                {% if has_gemini_key %}
+                <button class="btn-analyze" id="context-btn" onclick="loadContext()">Analyze</button>
+                {% else %}
+                <button class="btn-analyze" disabled title="Set GEMINI_API_KEY to enable">Analyze</button>
+                {% endif %}
+            </div>
+        </div>
+        <div id="context-result">
+            {% if not has_gemini_key %}
+            <div class="context-error">Set <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px;font-family:var(--font-mono)">GEMINI_API_KEY</code> to enable AI historical analysis.</div>
+            {% else %}
+            <div class="context-loading">Click "Analyze" to compare today's macro environment to history.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; color:var(--text-secondary); font-size:0.8rem; padding-top:10px;">
+        Data: FRED &amp; World Bank Open Data &middot; AI: Google Gemini &middot;
+        <a href="https://github.com/amaymaheshwari/lab" style="color:var(--text-secondary)">lab &nearr;</a>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

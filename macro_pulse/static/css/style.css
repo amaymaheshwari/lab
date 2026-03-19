@@ -1,0 +1,346 @@
+:root {
+    --bg-color: #000000;
+    --card-bg: rgba(28, 28, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #86868b;
+    --accent: #2997ff;
+    --accent-red: #ff3b30;
+    --accent-green: #30d158;
+    --accent-orange: #ff9f0a;
+    --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* --- Layout --- */
+.dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 30px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Header --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 8px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+
+#last-updated {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* --- Warning Banner --- */
+.api-warning {
+    background: rgba(255, 159, 10, 0.1);
+    border: 1px solid rgba(255, 159, 10, 0.3);
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: var(--accent-orange);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.api-warning code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+/* --- KPI Cards Row --- */
+.kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: 0.3s;
+}
+
+.kpi-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.kpi-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.kpi-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.kpi-value.green  { color: var(--accent-green); }
+.kpi-value.red    { color: var(--accent-red); }
+.kpi-value.orange { color: var(--accent-orange); }
+.kpi-value.blue   { color: var(--accent); }
+
+.kpi-sub {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* --- Chart Panels --- */
+.chart-row {
+    display: grid;
+    gap: 16px;
+}
+
+.chart-row.two-col { grid-template-columns: 2fr 1fr; }
+.chart-row.equal   { grid-template-columns: 1fr 1fr; }
+
+.chart-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.chart-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+}
+
+.chart-panel h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+.chart-sub {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.chart-canvas-wrapper {
+    height: 200px;
+    position: relative;
+}
+
+.chart-canvas-wrapper.tall { height: 240px; }
+
+/* --- G7 GDP Panel --- */
+.gdp-panel .chart-canvas-wrapper { height: 220px; }
+
+/* --- Gemini Context Panel --- */
+.context-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.context-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.context-panel h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+.context-tag {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 99px;
+    padding: 3px 10px;
+    opacity: 0.7;
+}
+
+#context-result {
+    min-height: 60px;
+}
+
+/* Context Card */
+.context-card {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 20px;
+}
+
+.context-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.context-era {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.context-confidence {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 1px solid currentColor;
+}
+
+.context-confidence.green  { color: var(--accent-green); border-color: rgba(48, 209, 88, 0.4); }
+.context-confidence.orange { color: var(--accent-orange); border-color: rgba(255, 159, 10, 0.4); }
+.context-confidence.red    { color: var(--accent-red); border-color: rgba(255, 59, 48, 0.4); }
+
+.context-reasoning {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.context-risk {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: rgba(255, 59, 48, 0.08);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.risk-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent-red);
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.risk-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+}
+
+.context-loading {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.context-error {
+    color: var(--accent-red);
+    font-size: 0.9rem;
+    padding: 12px 0;
+}
+
+/* --- Button --- */
+.btn-analyze {
+    background: linear-gradient(135deg, #1a3a5c, #0d2a45);
+    color: var(--accent);
+    border: 1px solid rgba(41, 151, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: var(--font-stack);
+    letter-spacing: 0.04em;
+    transition: 0.2s;
+}
+
+.btn-analyze:hover {
+    background: linear-gradient(135deg, #1e4570, #1a3a5c);
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(41, 151, 255, 0.2);
+}
+
+.btn-analyze:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* --- Responsive --- */
+@media (max-width: 1000px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .chart-row.two-col,
+    .chart-row.equal { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .dashboard { padding: 20px 16px 60px; }
+    .dashboard-header h1 { font-size: 2rem; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .kpi-value { font-size: 1.8rem; }
+}
